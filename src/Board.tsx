@@ -44,11 +44,13 @@ function Board(props: Props) {
             {bases.map(b => <circle key={b.fieldNumber} cx={b.x * 10} cy={b.y * 10} r="2.5" stroke={playerColors[b.baseOfPlayer!]} strokeDasharray={dashArray} strokeWidth={strokeWidth} fill="white" />)}
             {endFields.map(b => <circle key={b.fieldNumber} cx={b.x * 10} cy={b.y * 10} r="2.5" stroke={playerColors[b.endFieldOfPlayer!]} strokeDasharray={dashArray} strokeWidth={strokeWidth} fill="white" />)}
             {normalFields.map(b => <circle key={b.fieldNumber} cx={b.x * 10} cy={b.y * 10} r="3" stroke={b.startFieldOfPlayer !== undefined ? playerColors[b.startFieldOfPlayer] : "black"} strokeDasharray={dashArray} strokeWidth={strokeWidth} fill="white" />)}
-            {normalFields.map(b => <text key={"t" + b.fieldNumber} x={b.x * 10} y={b.y * 10} fill="#777777" fontSize="2" dominantBaseline="middle" textAnchor="middle" >{b.fieldNumber}</text>)}
             {allPieces.map((p, i) => {
                 const f = fields[p.piece];
                 return <circle key={"p-"  + i} cx={f.x * 10} cy={f.y * 10} r="3.5" stroke="black" strokeWidth={strokeWidth} fill={playerColors[p.number]} />
             })}
+            {bases.map(b => <text key={"t" + b.fieldNumber} x={b.x * 10} y={b.y * 10} fill="#777777" fontSize="2" dominantBaseline="middle" textAnchor="middle" >{b.fieldNumber}</text>)}
+            {endFields.map(b => <text key={"t" + b.fieldNumber} x={b.x * 10} y={b.y * 10} fill="#777777" fontSize="2" dominantBaseline="middle" textAnchor="middle" >{b.fieldNumber}</text>)}
+            {normalFields.map(b => <text key={"t" + b.fieldNumber} x={b.x * 10} y={b.y * 10} fill="#777777" fontSize="2" dominantBaseline="middle" textAnchor="middle" >{b.fieldNumber}</text>)}
         </DrawArea>
     </Border>)
 }

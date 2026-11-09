@@ -1,14 +1,19 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 type Props = {
-   className?: string
-   text: string
-   onClick: () => void
+    className?: string
+    text: string
+    selected?: boolean
+    onClick: () => void
 }
 
-function Button(props: Props) {
-    return <SButton className={props.className} onClick={_ => props.onClick()}>{props.text}</SButton>
-}
+const Button = forwardRef(function Button(props: Props, ref: React.Ref<HTMLButtonElement>) {
+    if(props.selected !== undefined && props.selected === true)
+        return <SSelectedButton ref={ref} className={props.className} onClick={_ => props.onClick()}>{props.text}</SSelectedButton>
+    
+    return <SButton ref={ref} className={props.className} onClick={_ => props.onClick()}>{props.text}</SButton>
+});
 
 export default Button
 
@@ -19,3 +24,8 @@ const SButton = styled.button`
   border-color: #616161;
   padding: 2px 8px;
 `;
+
+const SSelectedButton = styled(SButton)`
+  color: white;
+  background-color: darkgray;
+`
